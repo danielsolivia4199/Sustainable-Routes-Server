@@ -9,7 +9,7 @@ from sustainableapi.serializers import DestinationSerializer
 class DestinationView(ViewSet):
   """Sustainable Routes Destination View"""
   
-  def retrieve(slef, request, pk):
+  def retrieve(self, request, pk):
     """Handle GET request for a single Destination
     
     Returns -> Response -- JSON serialized destination"""
