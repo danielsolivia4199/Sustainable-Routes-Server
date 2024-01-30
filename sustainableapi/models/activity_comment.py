@@ -3,4 +3,4 @@ from .activity import Activity
 
 class ActivityComment(models.Model):
   content = models.TextField()
-  activity = models.ForeignKey(Activity, on_delete=models.CASCADE)
+  activity = models.ForeignKey(Activity, on_delete=models.CASCADE, related_name="comments")
