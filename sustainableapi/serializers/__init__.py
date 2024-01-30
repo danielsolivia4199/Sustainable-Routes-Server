@@ -1,0 +1,4 @@
+from .activity import ActivitySerializer
+from .activity_comment import ActivityCommentSerializer
+from .destination import DestinationSerializer
+from .destination_comment import DestinationCommentSerializer
