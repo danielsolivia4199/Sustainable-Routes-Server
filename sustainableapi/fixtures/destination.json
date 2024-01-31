@@ -1,0 +1,38 @@
+[
+  {
+      "model": "sustainableapi.destination",
+      "pk": 1,
+      "fields": {
+          "image": "https://www.ajc.com/resizer/aqGL2RB9sS5M1VA7x2e16kAkpu4=/850x480/cloudfront-us-east-1.images.arcpublishing.com/ajc/S3HZXC6INSWG32PVN6LSXDPJCE.jpg",
+          "name": "Georgia Aquarium - Atlanta Georgia",
+          "description": "Georgia Aquarium, located in Atlanta, Georgia, is a 501(c)(3) non-profit organization that contains more than 11 million gallons of water. Georgia Aquarium is a scientific institution that entertains and educates, features exhibits and programs of the highest standards, and offers engaging and exciting guest experiences that promote the conservation of aquatic biodiversity throughout the world."
+      }
+  },
+  {
+      "model": "sustainableapi.destination",
+      "pk": 2,
+      "fields": {
+          "image": "https://www.travelandleisure.com/thmb/4gCV8cgTfnsnOQ2n3adR9dSaOI8=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/yosemite-national-park-landscape-lead-WINTERYOSEMITE0322-513572cd8d8d429d82ffbfc996c77c84.jpg",
+          "name": "Yosemite National Park - California",
+          "description": "Yosemite National Park is a national park in California. It is bordered on the southeast by Sierra National Forest and on the northwest by Stanislaus National Forest. The park is managed by the National Park Service and covers 759,620 acres (1,187 sq mi; 3,074 km2) in four counties - centered in Tuolumne and Mariposa, extending north and east to Mono and south to Madera."
+      }
+  },
+  {
+      "model": "sustainableapi.destination",
+      "pk": 3,
+      "fields": {
+          "image": "https://assets.simpleviewinc.com/simpleview/image/upload/crm/omaha/hdzoo_dome0-a680bfbe5056a36_a680c0aa-5056-a36a-09f46a205aef2dd7.jpg",
+          "name": "Henry Doorly Zoo - Omaha Nebraska",
+          "description": "Omaha's Henry Doorly Zoo and Aquarium's mission is to inspire, educate and engage people to serve as lifelong stewards for the conservation of animals and their habitats."
+      }
+  },
+  {
+      "model": "sustainableapi.destination",
+      "pk": 4,
+      "fields": {
+          "image": "https://cdn.aarp.net/content/dam/aarp/travel/Domestic/2020/07/1140-angles-landing.imgcache.rev.web.1000.575.jpg",
+          "name": "Zion National Park - Utah",
+          "description": "Zion National Park is an American national park located in southwestern Utah near the town of Springdale. Located at the junction of the Colorado Plateau, Great Basin, and Mojave Desert regions, the park has a unique geography and a variety of life zones that allow for unusual plant and animal diversity."
+      }
+  }
+]

@@ -1,0 +1,26 @@
+[
+  {
+      "model": "sustainableapi.user",
+      "pk": 1,
+      "fields": {
+          "username": "trice7",
+          "uid": "j6i6bMbEcLMjoeQYS2a6gbphf8p2"
+      }
+  },
+  {
+      "model": "sustainableapi.user",
+      "pk": 2,
+      "fields": {
+          "username": "ajd3187",
+          "uid": "I6jvtfFgo2MdGZeJ33tY5WoIfoH3"
+      }
+  },
+  {
+      "model": "sustainableapi.user",
+      "pk": 3,
+      "fields": {
+          "username": "Olivia23",
+          "uid": "brhAsOwzxgNBlTiWtUQrf0sCpHB2"
+      }
+  }
+]
