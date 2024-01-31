@@ -17,11 +17,14 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include
 from rest_framework import routers
-from sustainableapi.views import register_user, check_user, DestinationView, ActivityView
+from sustainableapi.views import register_user, check_user, DestinationView, ActivityView, TagView, ActivityTagView, ActivityCommentView
 
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'destinations', DestinationView, 'destination')
 router.register(r'activities', ActivityView, 'activity')
+router.register(r'tags', TagView, 'tag')
+router.register(r'activity_tags', ActivityTagView, 'activity_tag')
+router.register(r'activity_comments', ActivityCommentView, 'activity_comment')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
