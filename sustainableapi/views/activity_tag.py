@@ -8,7 +8,7 @@ from rest_framework import serializers, status
 from rest_framework.decorators import action
 from sustainableapi.models import ActivityTag, Tag, Activity
 
-class OrderItemView(ViewSet):
+class ActivityTagView(ViewSet):
     """Activity Tags"""
 
     def retrieve(self, request, pk):
@@ -20,11 +20,14 @@ class OrderItemView(ViewSet):
         serializer = ActivityTagSerializer(activity_tag)
         return Response(serializer.data)
 
-    def list(self, request):
-        """Handle GET requests to get all activity tags items"""
-        activity_tags = ActivityTag.objects.all()
-        serializer = ActivityTag(activity_tags, many=True)
-        return Response(serializer.data)
+    """
+        def list(self, request):
+            \"\"\"Handle GET requests to get all activity tags items\"\"\"
+            activity_tags = ActivityTag.objects.all()
+            serializer = ActivityTag(activity_tags, many=True)
+            return Response(serializer.data)
+    """
+
 
     @action(detail=True, methods=['get'])
     def tags_for_activity(self, request, pk=None):

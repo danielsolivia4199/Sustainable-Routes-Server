@@ -1,0 +1,18 @@
+[
+  {
+      "model": "sustainableapi.activitytag",
+      "pk": 1,
+      "fields": {
+          "activity": "1",
+          "tag": "1"
+      }
+  },
+  {
+      "model": "sustainableapi.activitytag",
+      "pk": 2,
+      "fields": {
+          "activity": "2",
+          "tag": "1"
+      }
+  }
+]

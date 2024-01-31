@@ -1,0 +1,38 @@
+[
+  {
+      "model": "sustainableapi.tag",
+      "pk": 1,
+      "fields": {
+          "label": "Eco-Friendly"
+      }
+  },
+  {
+      "model": "sustainableapi.tag",
+      "pk": 2,
+      "fields": {
+          "label": "Sustainable"
+      }
+  },
+  {
+      "model": "sustainableapi.tag",
+      "pk": 3,
+      "fields": {
+          "label": "Renewable Energy"
+      }
+  },
+  {
+      "model": "sustainableapi.tag",
+      "pk": 4,
+      "fields": {
+          "label": "Conservation"
+      }
+  },
+  {
+      "model": "sustainableapi.tag",
+      "pk": 5,
+      "fields": {
+          "label": "Green Living"
+      }
+  }
+
+]
