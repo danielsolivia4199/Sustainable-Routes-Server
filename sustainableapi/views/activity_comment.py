@@ -23,22 +23,27 @@ class ActivityCommentView(ViewSet):
     def list(self, request):
         """Handle GET requests to get all activity comments"""
         activity_comments = ActivityComment.objects.all()
-        serializer = ActivityComment(activity_comments, many=True)
+        serializer = ActivityCommentSerializer(activity_comments, many=True)
         return Response(serializer.data)
 
     def create(self, request):
         """Handle POST operations
 
-        Returns
+        Returns:
             Response -- JSON serialized comment instance
         """
-        activity = Activity.objects.get(id=request.data["activity"])
+        # Get the activity object. Use get_object_or_404 to handle cases where the activity does not exist.
+        activity = get_object_or_404(Activity, pk=request.data.get('activityId'))
 
-        activity_comment = ActivityComment.objects.create(
-            content=request.data["content"],
-            activity=activity,
-        )
-        serializer = ActivityComment(activity_comment)
+        # Initialize the serializer with data and the activity instance
+        serializer = ActivityCommentSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+
+        # Save the new ActivityComment instance using validated data
+        # Pass the activity instance to the save method
+        serializer.save(activity=activity)
+
+        # Return the serialized new ActivityComment instance
         return Response(serializer.data)
     
     def destroy(self, request, pk=None):
@@ -57,9 +62,9 @@ class ActivityCommentView(ViewSet):
             return Response({'message': str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
 class ActivityCommentSerializer(serializers.ModelSerializer):
-    """JSON serializer for game types
+    """JSON serializer for comments
     """
     class Meta:
         model = ActivityComment
-        fields = ('id', 'tag', 'activity')
+        fields = ('id', 'content', 'activity')
         depth = 1
