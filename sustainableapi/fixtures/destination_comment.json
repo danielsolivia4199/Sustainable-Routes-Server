@@ -1,0 +1,18 @@
+[
+  {
+      "model": "sustainableapi.destinationcomment",
+      "pk": 1,
+      "fields": {
+          "content": "This is a sample comment for Destination 1.",
+          "destination": 1 
+      }
+  },
+  {
+      "model": "sustainableapi.destinationcomment",
+      "pk": 2,
+      "fields": {
+          "content": "Another comment, this time for Destination 2.",
+          "destination": 2 
+      }
+  }
+]
