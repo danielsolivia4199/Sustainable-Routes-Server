@@ -1,0 +1,42 @@
+[
+  {
+      "model": "sustainableapi.activity",
+      "pk": 1,
+      "fields": {
+          "description": "Touring the Georgia aqaurium and speaking with the chief conservationist about her efforts and accomplishments in regards to aquatic conservation",
+          "location": 1,
+          "user": 1,
+          "favorite": false
+      }
+  },
+  {
+      "model": "sustainableapi.activity",
+      "pk": 2,
+      "fields": {
+          "description": "Hiking the infamous Angel Trail",
+          "location": 4,
+          "user": 1,
+          "favorite": false
+      }
+  },
+  {
+      "model": "sustainableapi.activity",
+      "pk": 3,
+      "fields": {
+          "description": "Meeting up with chief agricultural expert, John Smith to learn about farming and living off the land. A 3 day event that includes camping",
+          "location": 2,
+          "user": 1,
+          "favorite": false
+      }
+  },
+  {
+      "model": "sustainableapi.activity",
+      "pk": 4,
+      "fields": {
+          "description": "Visiting the Omaha Zoo, the largest Zoo in the United States",
+          "location": 3,
+          "user": 1,
+          "favorite": false
+      }
+  }
+]

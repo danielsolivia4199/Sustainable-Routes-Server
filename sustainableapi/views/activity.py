@@ -35,7 +35,7 @@ class ActivityView(ViewSet):
     
     Returns -> JSON serialized activity instance with a 201 statue"""
     
-    user = User.objects.get(uid=request.data['uid'])
+    user = User.objects.get(pk=request.data['user'])
     location = Destination.objects.get(pk=request.data['location'])
     
     activity = Activity.objects.create(
@@ -54,7 +54,7 @@ class ActivityView(ViewSet):
     Returns -> JSON serialized activity instance with a 200 status"""
     
     
-    user = User.objects.get(uid=request.data['uid'])
+    user = User.objects.get(pk=request.data['user'])
     location = Destination.objects.get(pk=request.data['location'])
     
     activity = Activity.objects.get(pk=pk)
