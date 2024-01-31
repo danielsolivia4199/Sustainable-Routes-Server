@@ -43,7 +43,7 @@ class ActivityTagView(ViewSet):
             serializer = ActivityTagSerializer(activity_tags, many=True)
             return Response(serializer.data)
         else:
-            return Response({'message': 'Order ID is required'}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({'message': 'activity ID is required'}, status=status.HTTP_400_BAD_REQUEST)
 
     def create(self, request):
         try:
@@ -54,6 +54,30 @@ class ActivityTagView(ViewSet):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         except ValidationError as e:
             return Response({'message': str(e)}, status=status.HTTP_400_BAD_REQUEST)
+        
+    def update(self, request, pk=None):
+        """Handle PUT requests to update an activity tag
+        Args:
+            pk (int): Primary key of the activity tag to be updated
+        Returns:
+            Response -- JSON serialized activity tag instance
+        """
+        if pk is None:
+            return Response({'message': 'Activity Tag ID is required'}, status=status.HTTP_400_BAD_REQUEST)
+
+        try:
+            activity_tag = get_object_or_404(ActivityTag, pk=pk)
+            new_tag = get_object_or_404(Tag, pk=request.data["tagId"])
+            activity_tag.tag = new_tag
+            activity_tag.save()
+
+            serializer = ActivityTagSerializer(activity_tag)
+            return Response(serializer.data)
+        except ValidationError as e:
+            return Response({'message': str(e)}, status=status.HTTP_400_BAD_REQUEST)
+        except Exception as e:
+            return Response({'message': str(e)}, status=status.HTTP_400_BAD_REQUEST)
+
     
     def destroy(self, request, pk=None):
         """

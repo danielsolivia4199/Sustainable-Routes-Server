@@ -38,6 +38,28 @@ class ActivityCommentView(ViewSet):
         serializer.save(activity=activity)
 
         return Response(serializer.data)
+      
+    def update(self, request, pk=None):
+        """Handle PUT requests to update a activity comment
+        Args:
+            pk (int): Primary key of the activity comment to be updated
+        Returns:
+            Response -- JSON serialized activity comment instance
+        """
+        if pk is None:
+            return Response({'message': 'Comment ID is required'}, status=status.HTTP_400_BAD_REQUEST)
+
+        try:
+            activity_comment = get_object_or_404(ActivityComment, pk=pk)
+            serializer = ActivityCommentSerializer(activity_comment, data=request.data)
+            serializer.is_valid(raise_exception=True)
+            serializer.save()
+
+            return Response(serializer.data)
+        except ValidationError as e:
+            return Response({'message': str(e)}, status=status.HTTP_400_BAD_REQUEST)
+        except Exception as e:
+            return Response({'message': str(e)}, status=status.HTTP_400_BAD_REQUEST)
     
     def destroy(self, request, pk=None):
         """

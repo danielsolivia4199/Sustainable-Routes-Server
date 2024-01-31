@@ -36,14 +36,35 @@ class DestinationCommentView(ViewSet):
         serializer = DestinationCommentSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save(destination=destination)
-
         return Response(serializer.data)
+      
+    def update(self, request, pk=None):
+        """Handle PUT requests to update a destination comment
+        Args:
+            pk (int): Primary key of the destination comment to be updated
+        Returns:
+            Response -- JSON serialized destination comment instance
+        """
+        if pk is None:
+            return Response({'message': 'Comment ID is required'}, status=status.HTTP_400_BAD_REQUEST)
+
+        try:
+            destination_comment = get_object_or_404(DestinationComment, pk=pk)
+            serializer = DestinationCommentSerializer(destination_comment, data=request.data)
+            serializer.is_valid(raise_exception=True)
+            serializer.save()
+
+            return Response(serializer.data)
+        except ValidationError as e:
+            return Response({'message': str(e)}, status=status.HTTP_400_BAD_REQUEST)
+        except Exception as e:
+            return Response({'message': str(e)}, status=status.HTTP_400_BAD_REQUEST)
     
     def destroy(self, request, pk=None):
         """
         Handle DELETE requests for a single comment
         Args:
-            pk (int): Primary key of the tag to be deleted
+            pk (int): Primary key of the comment to be deleted
         Returns:
             Response -- HTTP status code
         """
