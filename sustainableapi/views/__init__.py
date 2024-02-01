@@ -4,3 +4,4 @@ from .activity import ActivityView
 from .tag import TagView
 from .activity_comment import ActivityCommentView
 from .activity_tag import ActivityTagView
+from .destination_comment import DestinationCommentView

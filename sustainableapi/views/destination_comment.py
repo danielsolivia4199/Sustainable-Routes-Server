@@ -6,24 +6,24 @@ from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers, status
 from rest_framework.decorators import action
-from sustainableapi.models import ActivityComment, Activity
+from sustainableapi.models import DestinationComment, Destination
 
-class ActivityCommentView(ViewSet):
-    """Activity Comments"""
+class DestinationCommentView(ViewSet):
+    """Destination Comments"""
 
     def retrieve(self, request, pk):
-        """Handle GET requests for single activity comment
+        """Handle GET requests for single destination comment
         Returns:
-            Response -- JSON serialized activity comment
+            Response -- JSON serialized destination comment
         """
-        activity_comment = ActivityComment.objects.get(pk=pk)
-        serializer = ActivityCommentSerializer(activity_comment)
+        destination_comment = DestinationComment.objects.get(pk=pk)
+        serializer = DestinationCommentSerializer(destination_comment)
         return Response(serializer.data)
 
     def list(self, request):
-        """Handle GET requests to get all activity comments"""
-        activity_comments = ActivityComment.objects.all()
-        serializer = ActivityCommentSerializer(activity_comments, many=True)
+        """Handle GET requests to get all destination comments"""
+        destination_comments = DestinationComment.objects.all()
+        serializer = DestinationCommentSerializer(destination_comments, many=True)
         return Response(serializer.data)
 
     def create(self, request):
@@ -32,26 +32,25 @@ class ActivityCommentView(ViewSet):
         Returns:
             Response -- JSON serialized comment instance
         """
-        activity = get_object_or_404(Activity, pk=request.data.get('activityId'))
-        serializer = ActivityCommentSerializer(data=request.data)
+        destination = get_object_or_404(Destination, pk=request.data.get('destinationId'))
+        serializer = DestinationCommentSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        serializer.save(activity=activity)
-
+        serializer.save(destination=destination)
         return Response(serializer.data)
       
     def update(self, request, pk=None):
-        """Handle PUT requests to update a activity comment
+        """Handle PUT requests to update a destination comment
         Args:
-            pk (int): Primary key of the activity comment to be updated
+            pk (int): Primary key of the destination comment to be updated
         Returns:
-            Response -- JSON serialized activity comment instance
+            Response -- JSON serialized destination comment instance
         """
         if pk is None:
             return Response({'message': 'Comment ID is required'}, status=status.HTTP_400_BAD_REQUEST)
 
         try:
-            activity_comment = get_object_or_404(ActivityComment, pk=pk)
-            serializer = ActivityCommentSerializer(activity_comment, data=request.data)
+            destination_comment = get_object_or_404(DestinationComment, pk=pk)
+            serializer = DestinationCommentSerializer(destination_comment, data=request.data)
             serializer.is_valid(raise_exception=True)
             serializer.save()
 
@@ -65,21 +64,21 @@ class ActivityCommentView(ViewSet):
         """
         Handle DELETE requests for a single comment
         Args:
-            pk (int): Primary key of the tag to be deleted
+            pk (int): Primary key of the comment to be deleted
         Returns:
             Response -- HTTP status code
         """
         try:
-            activity_comment = get_object_or_404(ActivityComment, pk=pk)
-            activity_comment.delete()
-            return Response({'message': 'Comment'}, status=status.HTTP_204_NO_CONTENT)
+            destination_comment = get_object_or_404(DestinationComment, pk=pk)
+            destination_comment.delete()
+            return Response({'message': 'Comment Deleted'}, status=status.HTTP_204_NO_CONTENT)
         except Exception as e:
             return Response({'message': str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
-class ActivityCommentSerializer(serializers.ModelSerializer):
+class DestinationCommentSerializer(serializers.ModelSerializer):
     """JSON serializer for comments
     """
     class Meta:
-        model = ActivityComment
+        model = DestinationComment
         fields = ('id', 'content')
         depth = 1
