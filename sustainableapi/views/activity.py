@@ -3,8 +3,9 @@ from django.http import HttpResponseServerError
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import status
-from sustainableapi.models import Activity, User, Destination
+from sustainableapi.models import Activity, User, Destination, ActivityTag, Tag
 from sustainableapi.serializers import ActivitySerializer
+
 
 class ActivityView(ViewSet):
   """Sustainable Routes Activity View"""
@@ -31,22 +32,23 @@ class ActivityView(ViewSet):
     return Response(serializer.data)
   
   def create(self, request):
-    """Handle POST request for activities
-    
-    Returns -> JSON serialized activity instance with a 201 statue"""
-    
-    user = User.objects.get(pk=request.data['user'])
-    location = Destination.objects.get(pk=request.data['location'])
-    
-    activity = Activity.objects.create(
-      description = request.data['description'],
-      location = location,
-      user = user,
-      favorite = request.data['favorite']
-    )
-    
-    serializer = ActivitySerializer(activity)
-    return Response(serializer.data, status=status.HTTP_201_CREATED)
+      user = User.objects.get(uid=request.data['uid'])
+      location = Destination.objects.get(pk=request.data['location'])
+      
+      activity = Activity.objects.create(
+          description=request.data['description'],
+          location=location,
+          user=user,
+          favorite=request.data['favorite']
+      )
+      
+      tag_ids = request.data.get('tags', [])
+      for tag_id in tag_ids:
+          tag = Tag.objects.get(pk=tag_id)
+          ActivityTag.objects.create(activity=activity, tag=tag)
+      
+      serializer = ActivitySerializer(activity)
+      return Response(serializer.data, status=status.HTTP_201_CREATED)
   
   def update(self, request, pk):
     """Handles PUT requests for an activity
@@ -54,7 +56,7 @@ class ActivityView(ViewSet):
     Returns -> JSON serialized activity instance with a 200 status"""
     
     
-    user = User.objects.get(pk=request.data['user'])
+    user = User.objects.get(uid=request.data['uid'])
     location = Destination.objects.get(pk=request.data['location'])
     
     activity = Activity.objects.get(pk=pk)
