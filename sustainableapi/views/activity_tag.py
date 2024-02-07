@@ -54,6 +54,7 @@ class ActivityTagView(ViewSet):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         except ValidationError as e:
             return Response({'message': str(e)}, status=status.HTTP_400_BAD_REQUEST)
+    
         
     def update(self, request, pk=None):
         """Handle PUT requests to update an activity tag
